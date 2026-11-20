@@ -4,8 +4,8 @@ import { useState } from "react";
 import { contact } from "../lib/site";
 
 // Web3Forms emails each enquiry to the client. The key is public by design.
-// Set NEXT_PUBLIC_WEB3FORMS_KEY in Vercel; without it, the form uses WhatsApp only.
-const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+// It lives in lib/site.js; NEXT_PUBLIC_WEB3FORMS_KEY in Vercel overrides it if set.
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || contact.web3formsKey;
 
 function whatsappText(d) {
   return [

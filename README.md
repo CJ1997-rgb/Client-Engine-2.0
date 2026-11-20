@@ -15,5 +15,5 @@ Built with Next.js and hosted on Vercel. Every push to `main` goes live.
 
 When a visitor sends the form:
 1. WhatsApp opens with their details filled in, addressed to the client's number. The visitor taps Send.
-2. If `NEXT_PUBLIC_WEB3FORMS_KEY` is set in Vercel, the details are also emailed to the client via Web3Forms.
-   Get the key at web3forms.com using the client's email address. The key is public by design.
+2. The details are also emailed via Web3Forms, using the access key in `lib/site.js`
+   (public by design). The receiving email address is set in the Web3Forms dashboard.
