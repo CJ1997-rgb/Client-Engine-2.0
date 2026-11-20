@@ -1,22 +1,19 @@
-# Client-Engine-2.0
+# Stamfort Technical Solutions website
 
-A small practice site to learn how the pieces fit together:
+Company website for Stamfort Technical Solutions, Bengaluru: industrial machine repair and maintenance.
+Built with Next.js and hosted on Vercel. Every push to `main` goes live.
 
-- **GitHub** stores the code.
-- **Vercel** builds the code and puts the website online (every push to `main` redeploys).
-- **Supabase** holds the data. The home page reads the `notes` table.
+## Where things are
 
-## Setup
+- `lib/site.js`: all the words, lists, contact details and photo captions. Edit this to change content.
+- `app/page.js`: the page layout (sections: hero, services, work, about, contact)
+- `app/EnquiryForm.js`: the enquiry form
+- `app/globals.css`: colours, fonts and layout
+- `public/work/`: project photos (compressed)
 
-1. **Supabase:** open SQL Editor → New query, paste `supabase/setup.sql`, click Run.
-2. **Vercel:** Project → Settings → Environment Variables, add:
-   - `NEXT_PUBLIC_SUPABASE_URL`: Supabase → Project Settings → API → Project URL
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: the anon / publishable key (never the secret key)
-3. **Redeploy** in Vercel. The home page should list your notes.
+## Enquiry form
 
-## Files
-
-- `app/page.js`: the home page
-- `app/layout.js`: the frame around every page
-- `lib/supabase.js`: the connection to Supabase
-- `supabase/setup.sql`: creates the `notes` table and its security rule
+When a visitor sends the form:
+1. WhatsApp opens with their details filled in, addressed to the client's number. The visitor taps Send.
+2. If `NEXT_PUBLIC_WEB3FORMS_KEY` is set in Vercel, the details are also emailed to the client via Web3Forms.
+   Get the key at web3forms.com using the client's email address. The key is public by design.
