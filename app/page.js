@@ -13,11 +13,8 @@ import {
   aboutMachines,
   career,
   work,
+  waLink,
 } from "../lib/site";
-
-const waLink = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
-  "Hello, I have a machine that needs repair or maintenance."
-)}`;
 
 export default function Home() {
   return (

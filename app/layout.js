@@ -4,6 +4,7 @@ import "@fontsource/barlow/600.css";
 import "@fontsource/barlow-condensed/600.css";
 import "@fontsource/barlow-condensed/700.css";
 import "./globals.css";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 export const metadata = {
   title: "Stamfort Technical Solutions | Industrial machine repair and maintenance, Bengaluru",
@@ -26,7 +27,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }

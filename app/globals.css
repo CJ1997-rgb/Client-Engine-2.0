@@ -578,6 +578,106 @@ ul.gallery {
   color: var(--white);
 }
 
+/* Floating WhatsApp button: appears after scrolling past the hero */
+.wa-float {
+  --wa: #25d366;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50; /* above the sticky header (10), below the skip link (100) */
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(27, 35, 32, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.wa-float.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.wa-float:hover {
+  background: #20bd5a;
+}
+.wa-icon {
+  position: relative; /* keep the icon above the pulse ring */
+  width: 32px;
+  height: 32px;
+}
+.wa-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--wa);
+  z-index: -1;
+  animation: wa-pulse 2s ease-out infinite;
+}
+@keyframes wa-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.wa-tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translate(6px, -50%);
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.35rem 0.7rem;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.wa-tip::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--ink);
+}
+@media (hover: hover) {
+  .wa-float:hover .wa-tip {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+.wa-float:focus-visible .wa-tip {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-pulse {
+    animation: none;
+    opacity: 0;
+  }
+  .wa-float,
+  .wa-tip {
+    transition: opacity 0.2s ease, visibility 0.2s;
+  }
+  .wa-float {
+    transform: none;
+  }
+}
+
 /* Tablet */
 @media (max-width: 960px) {
   .hero-grid,
@@ -631,5 +731,9 @@ ul.gallery {
   ul.gallery {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem 0.75rem;
+  }
+  /* Room under the footer so the WhatsApp button never covers its last lines */
+  .footer {
+    padding-bottom: 5.5rem;
   }
 }
